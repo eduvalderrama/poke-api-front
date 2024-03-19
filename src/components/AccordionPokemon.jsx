@@ -3,10 +3,11 @@ import { formatName } from "../utils";
 import { useGetPokemon } from "../hooks/useGetPokemon";
 import Loading from "./Loading";
 import ImageInfoPokemonCard from "./ImageInfoPokemonCard";
+import ErrorMessage from "./ErrorMessage";
 
 const AccordionPokemon = ({ pokemons }) => {
   const [ selectedPokemon, setSelectedPokemon ] = useState(pokemons[0]?.name);
-  const { data, isFetching, isLoading, refetch } = useGetPokemon(selectedPokemon) || {};
+  const { data, isFetching, isLoading, refetch, isError, error } = useGetPokemon(selectedPokemon) || {};
 
   const selectPokemon = ((e) => {
     setSelectedPokemon(e.target.value)
@@ -49,12 +50,16 @@ const AccordionPokemon = ({ pokemons }) => {
                       </div>
                     </div>
                   ) : (
-                    (data && validateSelectPokemon) && (
-                      <div id="collapseOne"  className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div className="accordion-body" >
-                          <ImageInfoPokemonCard sprites={data?.sprites} stats={data?.stats} height={data?.height} weight={data?.weight} types={data.types}/>
+                    isError && validateSelectPokemon ? (
+                      <ErrorMessage error={error.message} />
+                    ) : (
+                      (data && validateSelectPokemon) && (
+                        <div id="collapseOne"  className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                          <div className="accordion-body" >
+                            <ImageInfoPokemonCard sprites={data?.sprites} stats={data?.stats} height={data?.height} weight={data?.weight} types={data.types}/>
+                          </div>
                         </div>
-                      </div>
+                      )
                     )
                   )}
               </div>
