@@ -9,14 +9,12 @@ const HomePage = () => {
   const { data, isLoading, isError, error } = useGetPokemons();
   const [ searchValue, setSearchValue ] = useState();
   const { results: pokemons } = data || {};
-  const filteredPokemons = searchValue ? pokemons?.filter((pokemon) => pokemon.name.includes(searchValue)) : pokemons;
+  const filteredPokemons = searchValue ? pokemons?.filter((pokemon) => pokemon.name.includes(searchValue.toLowerCase())) : pokemons;
 
   const handleSearch = ((e) => {
     setSearchValue(e.target.value)
   })
 
-console.log(error);
-  
   return (
     <div className="d-flex flex-column justify-content-center align-items-center min-vh-100 p-5">
       {isLoading ? (

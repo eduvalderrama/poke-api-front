@@ -8,8 +8,6 @@ export const getPokemons = async () => {
 };
 
 export const getPokemon = async (pokemon) => {
-  throw new Error('No se encontraron pokemones');
-
   const response = await axios.get(
     `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
   );
