@@ -9,13 +9,8 @@ const ScrollToTop = () => {
   useEffect(() => {
     const handleScroll = () => {
       const button = document.getElementById("scrollToTopButton");
-      if (button) {
-        if (window.scrollY > 200) {
-          button.style.display = "block";
-        } else {
-          button.style.display = "none";
-        }
-      }
+      if (!button) return;
+      button.style.display = window.scrollY > 200 ? "block" : "none";
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,13 +23,14 @@ const ScrollToTop = () => {
     <button
       id="scrollToTopButton"
       type="button"
-      className="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4"
+      className="scroll-top"
       onClick={scrollToTop}
+      aria-label="Volver arriba"
       style={{ display: "none" }}
     >
       <FaArrowUp />
     </button>
-  )
-}
+  );
+};
 
 export default ScrollToTop;
