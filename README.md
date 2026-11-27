@@ -2,7 +2,7 @@
 
 Pokédex en React y TypeScript. Muestra el listado de Pokémon en páginas de 24 y abre la ficha del que elijas.
 
-Publicado en Vercel: https://poke-api-front-eosin.vercel.app/
+Publicado en Vercel: https://poke-api-front-kappa.vercel.app/
 
 ## Cómo funciona
 
